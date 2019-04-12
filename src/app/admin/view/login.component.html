@@ -1,0 +1,19 @@
+<div class="news agile">
+        <div class="container" style="border: 1px solid #0d474e;padding: 20px 5px 20px 5px;background-color: floralwhite;">
+            <div class="news-left news-right">
+                <div class="news-right-info wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <h4>Admin Login </h4>
+                    <form name="form" (ngSubmit)="login()" #f="ngForm" novalidate >
+                        <input type="text" placeholder="Enter Your Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
+                        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+
+                        <input type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Enter Your Password">
+                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                        
+                        <input type="submit" value="Submit">
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

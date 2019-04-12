@@ -1,0 +1,23 @@
+<div class="about wthree">
+        <div class="container">
+            <div class="col-md-12 about-left wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
+                <h3>cupidatat non proident hitesh</h3>
+                <table class="main-table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Action</th>   
+                    </tr>
+                    <tr *ngFor="let emp of user.data">
+                        <td align="center">{{emp.id}}</td>
+                        <td>{{emp.employeeName}}</td>
+                        <td>{{emp.city}}</td>
+                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | DELETE</td>
+                    </tr>
+                </table>
+                
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>

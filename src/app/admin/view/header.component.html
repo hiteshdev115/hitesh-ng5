@@ -1,0 +1,73 @@
+<!-- Header -->
+    <div class="header">
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgba(118, 134, 3, 0.61);">
+            <div class="container">
+                <div class="navbar-header wow fadeInLeft animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand">Admin</a>
+                    
+                </div>
+                <!-- <div color="primary" *ngIf="isLoggedIn | async">Test</div> -->
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
+                          <li>
+                            <a class="hover-effect scroll" routerLink="./product">
+                            <span>
+                              <span>PRODUCT</span>
+                              <span>PRODUCT</span>
+                              <span></span>
+                            </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="hover-effect scroll" routerLink="./user">
+                            <span>
+                              <span>USER</span>
+                              <span>USER</span>
+                              <span></span>
+                            </span>
+                            </a>
+                          </li>
+                          <li><a routerLink="./banner" class="hover-effect scroll">
+                            <span>
+                              <span>BANNER</span>
+                              <span>BANNER</span>
+                              <span></span>
+                            </span>
+                          </a>
+                          </li>
+                          <li><a routerLink="./gallery" class="hover-effect scroll">
+                            <span>
+                              <span>GALLERY</span>
+                              <span>GALLERY</span>
+                              <span></span>
+                            </span>
+                          </a>
+                          </li>                          
+                          <li><a routerLink="./inquiry" class="hover-effect scroll">
+                            <span>
+                              <span>INQUIRY</span>
+                              <span>INQUIRY</span>
+                              <span></span>
+                            </span>
+                          </a></li>
+
+                          <li><a class="hover-effect scroll" (click)="logout()">
+                            <span>
+                              <span>LOGOUT</span>
+                              <span>LOGOUT</span>
+                              <span></span>
+                            </span>
+                          </a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.nav-collapse -->
+        </nav>
+    </div>
