@@ -7,25 +7,25 @@
         <div class="container">
             <div class="news-left news-right">
                 <div class="news-right-info wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    <h4>You Profile </h4>
-                    <form #profileForm="ngForm" enctype="multipart/form-data" (ngSubmit)="saveprofile(profileForm.value)" novalidate autocomplete="off">
+                    <h4>Update Employee Information </h4>
+                    <form #employeeForm="ngForm" enctype="multipart/form-data" (ngSubmit)="saveEmployee(employeeForm.value)" novalidate autocomplete="off">
 
                         <input type="hidden" name="id" [(ngModel)]="model.id" #name="ngModel">
 
                         <input type="text" name="name" [(ngModel)]="model.name" #name="ngModel" required placeholder="Enter Your Name">
-                        <div *ngIf="profileForm.submitted && !name.valid" class="help-block">Name is required</div>
+                        <div *ngIf="employeeForm.submitted && !name.valid" class="help-block">Name is required</div>
                         
-                        <input type="text" placeholder="Enter Your Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
-                        <div *ngIf="profileForm.submitted && !email.valid" class="help-block">Email is required</div>
+                        <input type="text" placeholder="Enter Your City" name="city" [(ngModel)]="model.city" #city="ngModel" required>
+                        <div *ngIf="employeeForm.submitted && !city.valid" class="help-block">City is required</div>
 
                         <input type="text" placeholder="Enter Your Contact Number" name="contactno" [(ngModel)]="model.contactno" #contactno="ngModel" required>
-                        <div *ngIf="profileForm.submitted && !contactno.valid" class="help-block">Contact number is required</div>
+                        <div *ngIf="employeeForm.submitted && !contactno.valid" class="help-block">Contact number is required</div>
 
-                        <input type="file" (change)="fileUpload($event)" name="profile_pic" />
+                        <!--<input type="file" (change)="fileUpload($event)" name="profile_pic" />
                         <div *ngIf="url" style="width: 100%; padding: 5px; text-align: left;">
                             <img [src]="url" height="100"><br/>
                             <a (click)="unlinkProfile(model.id)" >Remove</a>
-                        </div>
+                        </div>-->
 
                         <input type="submit" value="Save">
                                                

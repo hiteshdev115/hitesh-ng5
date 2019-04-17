@@ -53,21 +53,22 @@ export class DataService {
         });     
     }
     
-    saveprofile(postData: any = [], files: File[]) {
+    saveEmployee(postData: any = []) {
         
         var headerToken = this._httpService.createAuthorizationHeader();
         
         let formdata = new FormData();
-        formdata.append("profile_pic", files[0]);
-        if (postData) {
+        //formdata.append("profile_pic", files[0]);
+        
+       /* if (postData) {
             for (var key in postData) {
                 var value = postData[key];
                 formdata.append(key, value);
             }
-        }
-        
+        }*/
+        //console.log(formdata);
         return <any>new Promise((resolve, reject) => {
-                this._http.post(this.baseUrl + "saveUser", formdata, {headers:headerToken}).subscribe(
+                this._http.post(this.baseUrl + "updateEmployee", postData, {headers:headerToken}).subscribe(
                 res => {
                     var resData = res;
                     resolve(resData);
@@ -79,12 +80,40 @@ export class DataService {
         })    
     }
 
-    getUserDetails() {
-        var user = JSON.parse(localStorage.getItem('loginUser'));
-        var email = user.data.email;
-        //console.log('getUserDetails==>'+email);
+    saveEmployeeDetails(postData: any = []) {
+        
+        var headerToken = this._httpService.createAuthorizationHeader();
+        
+        let formdata = new FormData();
+        //formdata.append("profile_pic", files[0]);
+        
+       /* if (postData) {
+            for (var key in postData) {
+                var value = postData[key];
+                formdata.append(key, value);
+            }
+        }*/
+        //console.log(formdata);
         return <any>new Promise((resolve, reject) => {
-                this._http.post(this.baseUrl + "getUserDetails", {email:email}).subscribe(
+                this._http.post(this.baseUrl + "addEmployee", postData, {headers:headerToken}).subscribe(
+                res => {
+                    var resData = res;
+                    resolve(resData);
+                },
+                error => {
+                    reject(error);
+                }
+            )
+        })    
+    }
+
+    getUserDetails(id:any) {
+        //var user = JSON.parse(localStorage.getItem('loginUser'));
+        //var email = user.data.email;
+        //console.log('getUserDetails==>'+email);
+        var headerToken = this._httpService.createAuthorizationHeader();
+        return <any>new Promise((resolve, reject) => {
+                this._http.post(this.baseUrl + "getUserDetails", {id:id,headers:headerToken}).subscribe(
                 res => {
                     var resData = res;
                     resolve(resData);
@@ -95,6 +124,9 @@ export class DataService {
             )
         })       
     }
+    deleteEmployee(id){
+         return this._http.post(this.baseUrl + "deleteEmployee",{id:id});  
+     }
 
     unlinkProfile(id){
        return <any>new Promise((resolve, reject) => {

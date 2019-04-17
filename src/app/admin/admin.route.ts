@@ -7,7 +7,7 @@ import {AdminhomeComponent} from './component/adminhome.component';
 import {UserComponent} from './component/user.component';
 import {ProductComponent} from './component/product.component';
 import {EdituserComponent} from './component/edituser.component';
-
+import {AdduserComponent} from './component/adduser.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 export const BackRoute: Routes = [
@@ -41,10 +41,21 @@ export const BackRoute: Routes = [
          canActivate: [AuthGuard]
       },
       {
+        path: 'user/add',
+        component: AdduserComponent,
+        canActivate: [AuthGuard]
+      }, 
+      {
         path: 'edit/:id',
         component: EdituserComponent,
         canActivate: [AuthGuard]
-      },      
+      },  
+      {
+        path: 'deleteEmployee',
+        component: UserComponent,
+        canActivate: [AuthGuard]
+      },
+          
     ]
   }
 ];

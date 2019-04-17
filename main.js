@@ -66,6 +66,10 @@ app.post('/unlinkimage', log.unlinkImage);
 app.post('/admin/adminlogin', admin_login.login);
 app.post('/admin/user', admin_user.userList);
 app.post('/admin/product', admin_user.productList);
+app.post('/admin/getUserDetails', admin_user.getSingleUserDetails);
+app.post('/admin/updateEmployee', admin_user.updateEmployee);
+app.post('/admin/deleteEmployee', admin_user.deleteEmployee);
+app.post('/admin/addEmployee', admin_user.addEmployee);
 
 
 /*app.get('*', (req, res) => {

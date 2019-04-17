@@ -1,22 +1,26 @@
 <div class="about wthree">
         <div class="container">
             <div class="col-md-12 about-left wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
-                <h3>cupidatat non proident hitesh</h3>
-                <table class="main-table">
+                <h3>Employee List</h3>
+                <input type="button" value="ADD NEW" (click)="addNew()">
+                <table class="main-table">                    
                     <tr>
+                        <th><input type="checkbox"></th>
                         <th>Id</th>
                         <th>Name</th>
                         <th>City</th>
+                        <th>Contact No</th>
                         <th>Action</th>   
                     </tr>
                     <tr *ngFor="let emp of user.data">
+                        <td><input type="checkbox" value="{{emp.id}}"></td>
                         <td align="center">{{emp.id}}</td>
                         <td>{{emp.employeeName}}</td>
                         <td>{{emp.city}}</td>
-                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | DELETE</td>
+                        <td>{{emp.phone}}</td>
+                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | <a (click)="openConfirmationDialog()" >DELETE</a></td>
                     </tr>
-                </table>
-                
+                </table>                
             </div>
             <div class="clearfix"> </div>
         </div>

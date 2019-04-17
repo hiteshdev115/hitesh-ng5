@@ -20,6 +20,7 @@ export class EdituserComponent implements OnInit {
     profile_pic:any;
     
     constructor(public router: Router,
+        private route: ActivatedRoute,
         public _dataService: DataService,
         public _authService: AuthService) {
 
@@ -29,32 +30,33 @@ export class EdituserComponent implements OnInit {
               city: '',
               submitted:false
           };
-          this.id = this.router.snapshot.paramMap.get('id');
+          
+          
 
     }
     
     ngOnInit() {
       //this.checklogin = this._authService.getLoginUserInfo();
-      
-      this.getCurrentUser = this._dataService.getUserDetails();
+      this.id = this.route.snapshot.paramMap.get('id');
+      //this.getCurrentUser = this._dataService.getUserDetails();
       console.log('update');
-      this._dataService.getUserDetails().then((res) => {
+      this._dataService.getUserDetails(this.id).then((res) => {
                 if (res.success) {
                     //console.log(res);
                     this.model.id = res.data[0].id;
-                    this.model.name = res.data[0].name;
-                    this.model.email = res.data[0].email;
-                    this.model.contactno = res.data[0].contactno;
-                    if(res.data[0].profile_pic != ''){
+                    this.model.name = res.data[0].employeeName;       
+                    this.model.city = res.data[0].city;                    
+                    this.model.contactno = res.data[0].phone;
+                    /*if(res.data[0].profile_pic != ''){
                       this.url = '/assets/profile/'+res.data[0].profile_pic;
-                    }
+                    }*/
                 } else {
                     console.log('error in get profile data');
                     this.model.id = '';
                     this.model.name = '';
-                    this.model.email = '';
+                    this.model.city = '';
                     this.model.contactno = '';
-                    this.url = '';
+                    //this.url = '';
                 }
         });
     }
@@ -75,11 +77,12 @@ export class EdituserComponent implements OnInit {
         
     }
 
-    saveprofile(postData) {
+    saveEmployee(postData) {
         console.log(postData);
-        this._dataService.saveprofile(postData,this.profile_pic).then((res) => {
+        //this._dataService.saveprofile(postData,this.profile_pic).then((res) => {
+        this._dataService.saveEmployee(postData).then((res) => {
                 if (res.success) {
-                    this.router.navigate(['/profile']);
+                    this.router.navigate(['/admin/user']);
                 } else {
                   console.log('error');
                 }

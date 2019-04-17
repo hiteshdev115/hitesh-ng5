@@ -3,7 +3,7 @@ import { CommonModule }   from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginComponent }     from './component/login.component';
 import { HeaderComponent }     from './component/header.component';
@@ -13,13 +13,15 @@ import { AdminhomeComponent }     from './component/adminhome.component';
 import {UserComponent} from './component/user.component';
 import {ProductComponent} from './component/product.component';
 import {EdituserComponent} from './component/edituser.component';
-
+import {AdduserComponent} from './component/adduser.component';
 
 import { AuthService } from './auth/auth.service';
 import { DataService } from './auth/data.service';
 import { HttpService } from './http_serv/http.service';
 import { AuthGuard } from './_guards/auth.guard';
 
+import { ConfirmationDialogComponent } from './component/confirmation-dialog.component';
+import { ConfirmationDialogService } from './auth/confirmation-dialog.service';
 
 import { AdminRoute } from './admin.route';
 
@@ -37,11 +39,15 @@ import { AdminRoute } from './admin.route';
     DashboardComponent,
     UserComponent,
     ProductComponent,
-    EdituserComponent
+    EdituserComponent,
+    AdduserComponent,
+    ConfirmationDialogComponent
   ],
-  providers: [AuthGuard,AuthService,DataService,HttpService],
+  providers: [AuthGuard,AuthService,DataService,HttpService,ConfirmationDialogService],
+  entryComponents: [ ConfirmationDialogComponent ],
   exports:[],
-  bootstrap: []
+  bootstrap: [],
+  
 })
 export class AdminModule {
   constructor(){
