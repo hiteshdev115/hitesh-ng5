@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -7,32 +7,45 @@ import { DataService } from '../auth/data.service';
 import { User } from '../component/user'; //interface
 import { ResourceLoader } from '@angular/compiler';
 import { Location } from '@angular/common';
-import { ConfirmationDialogService } from '../auth/confirmation-dialog.service';
+import { DialogBodyComponent } from '../component/dialog-body/dialog-body.component';
+
+import {
+	MatDialog,
+	MatDialogConfig
+  } from "@angular/material";
+
 
 @Component({
 	//selector: 'app-login',
-  	templateUrl: '../view/user.component.html'
+	  templateUrl: '../view/user.component.html',
+	  
  })
 export class UserComponent {	
 
 		checklogin:any;
 		getUserList:any;
 		model: any = {};
-		
+		//modalTitle:string;
 		getCurrentUser:any;
 		public user : User[] = []; 
 		public userObservable : Observable<User[]> ;
 		selectedAll: any; 
 		userArray:any;
 		
+		headText: string;
+		titleText: string;
+		descText: string;
+		empid:any;
+
 		constructor(
 			public router: Router,
 			public _dataService: DataService,
 			public _authService: AuthService,
 			private location: Location,
-			private confirmationDialogService: ConfirmationDialogService) {
+			private dialog: MatDialog,
+			) {
 				//console.log('user component');
-				
+				//this.modalTitle = 'tester';
 		}
 		
 		ngOnInit() {
@@ -86,11 +99,25 @@ export class UserComponent {
 			}
 		};
 
-		public openConfirmationDialog() {
-			this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
-			.then((confirmed) => console.log('User confirmed:', confirmed))
-			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-		  }
+		openDialog(id:any): void {
+			this.headText = 'Delete Confirmation';
+			this.titleText = 'Are you sure you want to delete this data?';
+			this.descText = 'if ignore then click close';
+			//console.log('in opendialog===>'+id);
+			this.empid = id;
+			const dialogRef = this.dialog.open(DialogBodyComponent, {
+				width: '100%',
+				maxWidth:'100%',
+				data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText}
+			});
+			dialogRef.afterClosed().subscribe(result => {
+				//this.fetchEmployeeData();	
+			});
+		}
+		
+		
+		
+
 
     
 }

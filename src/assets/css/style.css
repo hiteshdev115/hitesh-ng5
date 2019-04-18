@@ -2124,3 +2124,10 @@ input[type="text"] {
     border-color: #FFF;
     padding-left: 10px;
 }
+.cdk-overlay-container{
+    width: 100%!important;
+    position: absolute!important;
+    top: 35%!important;;
+    
+    
+}

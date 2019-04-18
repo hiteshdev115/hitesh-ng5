@@ -18,7 +18,7 @@
                         <td>{{emp.employeeName}}</td>
                         <td>{{emp.city}}</td>
                         <td>{{emp.phone}}</td>
-                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | <a (click)="openConfirmationDialog()" >DELETE</a></td>
+                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | <a (click)="openDialog(emp.id)" >DELETE</a></td>
                     </tr>
                 </table>                
             </div>

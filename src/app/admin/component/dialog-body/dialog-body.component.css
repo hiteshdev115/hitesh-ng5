@@ -1,0 +1,10 @@
+
+.dialog-body-hp{
+    background-color: #f2f5f2!important;
+    padding: 10px;
+    width: 25%;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid black;
+    height: 160px;
+}

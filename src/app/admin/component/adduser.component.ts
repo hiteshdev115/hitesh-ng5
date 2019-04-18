@@ -30,9 +30,6 @@ export class AdduserComponent implements OnInit {
               city: '',
               submitted:false
           };
-          
-          
-
     }
     
     ngOnInit() {

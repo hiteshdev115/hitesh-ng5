@@ -3,7 +3,9 @@ import { CommonModule }   from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { MatDialogModule } from '@angular/material'; //for open dialog
+
 
 import { LoginComponent }     from './component/login.component';
 import { HeaderComponent }     from './component/header.component';
@@ -20,16 +22,18 @@ import { DataService } from './auth/data.service';
 import { HttpService } from './http_serv/http.service';
 import { AuthGuard } from './_guards/auth.guard';
 
-import { ConfirmationDialogComponent } from './component/confirmation-dialog.component';
-import { ConfirmationDialogService } from './auth/confirmation-dialog.service';
+import { EventEmitterService } from './event-emitter.service';
 
 import { AdminRoute } from './admin.route';
+import { DialogBodyComponent } from './component/dialog-body/dialog-body.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoute,
-    FormsModule
+    FormsModule,
+    MatDialogModule
+    
   ],
   declarations: [
     LoginComponent,
@@ -41,13 +45,12 @@ import { AdminRoute } from './admin.route';
     ProductComponent,
     EdituserComponent,
     AdduserComponent,
-    ConfirmationDialogComponent
+    DialogBodyComponent
   ],
-  providers: [AuthGuard,AuthService,DataService,HttpService,ConfirmationDialogService],
-  entryComponents: [ ConfirmationDialogComponent ],
+  providers: [AuthGuard,AuthService,DataService,HttpService,EventEmitterService],
   exports:[],
   bootstrap: [],
-  
+  entryComponents: [DialogBodyComponent]  
 })
 export class AdminModule {
   constructor(){
