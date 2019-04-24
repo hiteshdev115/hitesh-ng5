@@ -70,6 +70,8 @@ app.post('/admin/getUserDetails', admin_user.getSingleUserDetails);
 app.post('/admin/updateEmployee', admin_user.updateEmployee);
 app.post('/admin/deleteEmployee', admin_user.deleteEmployee);
 app.post('/admin/addEmployee', admin_user.addEmployee);
+app.post('/admin/deleteSelectedEmployee', admin_user.deleteSelectedEmployee);
+
 
 
 /*app.get('*', (req, res) => {

@@ -2127,7 +2127,15 @@ input[type="text"] {
 .cdk-overlay-container{
     width: 100%!important;
     position: absolute!important;
-    top: 35%!important;;
-    
-    
+    top: 35%!important;  
+}
+.button-group{
+    margin: 0 0 10px 0;    
+    float: right;
+}
+.button-group input{
+    margin-right: 10px;
+}
+.btn-primary{
+    margin: 5px 5px 5px 0;
 }

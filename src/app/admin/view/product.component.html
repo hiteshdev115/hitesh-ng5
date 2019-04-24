@@ -1,3 +1,26 @@
 <div class="about wthree">
-      Product Page
+      <div class="container">
+            <div class="col-md-12 about-left wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
+                  <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger" >
+                        <thead>
+                              <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              <tr *ngFor="let prod of user.data">
+                                    <td>{{prod.productName}}</td>
+                                    <td>{{prod.description}}</td>
+                                    <td>{{prod.price}}</td>
+                                    <td align="center"><a ><i class="fa fa-pencil" aria-hidden="true"> </i></a> | <a style="cursor: pointer;"  ><i class="fa fa-trash"></i></a></td>
+                              </tr>
+                        </tbody>
+                  </table>
+            </div>
+      </div>
 </div>
+      

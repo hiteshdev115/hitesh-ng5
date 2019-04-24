@@ -10,6 +10,7 @@ import { rootRouting } from './app.routing';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +21,7 @@ import { rootRouting } from './app.routing';
     BrowserAnimationsModule,
     rootRouting,
     HttpClientModule
+    
   ],
   providers: [],
   exports: [RouterModule],

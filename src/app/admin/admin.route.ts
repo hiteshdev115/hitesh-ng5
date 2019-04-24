@@ -55,7 +55,12 @@ export const BackRoute: Routes = [
         component: UserComponent,
         canActivate: [AuthGuard]
       },
-          
+      {
+        path: 'deleteSelectedEmployee',
+        component: UserComponent,
+        canActivate: [AuthGuard]
+      },
+       
     ]
   }
 ];

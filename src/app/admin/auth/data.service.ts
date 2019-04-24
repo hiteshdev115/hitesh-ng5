@@ -31,7 +31,7 @@ export class DataService {
     get_users(){
         var headerToken = this._httpService.createAuthorizationHeader();
         return this._http.post(this.baseUrl + "user",{headers:headerToken})
-      }
+    }
 
     
     getAllUserData() {
@@ -124,11 +124,17 @@ export class DataService {
             )
         })       
     }
-    deleteEmployee(id){
+    deleteEmployee(id:any){
          return this._http.post(this.baseUrl + "deleteEmployee",{id:id});  
-     }
+    }
+    
+    deleteSelectedEmployee(userIds:any){
+        var headerToken = this._httpService.createAuthorizationHeader();
+        console.log("UserIds====>"+userIds);
+        return this._http.post(this.baseUrl + "deleteSelectedEmployee",{id:userIds,headers:headerToken});  
+    }
 
-    unlinkProfile(id){
+    unlinkProfile(id:any){
        return <any>new Promise((resolve, reject) => {
                 this._http.post(this.baseUrl + "unlinkimage", {id:id}).subscribe(
                 res => {
@@ -140,5 +146,10 @@ export class DataService {
                 }
             )
         })     
+    }
+
+    get_products(){
+        var headerToken = this._httpService.createAuthorizationHeader();
+        return this._http.post(this.baseUrl + "product",{headers:headerToken})
     }
 }

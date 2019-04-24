@@ -35,7 +35,15 @@ export class UserComponent {
 		headText: string;
 		titleText: string;
 		descText: string;
+		dialogType:string;
 		empid:any;
+
+		public count: number;
+		public selected: string;
+		userIds: any[] = [];
+		masterSelected:boolean;
+		checklist:any;
+		checkedList:any;
 
 		constructor(
 			public router: Router,
@@ -44,21 +52,34 @@ export class UserComponent {
 			private location: Location,
 			private dialog: MatDialog,
 			) {
+				
 				//console.log('user component');
 				//this.modalTitle = 'tester';
 		}
+
+		
+		
+		onCheckboxChange(id:any, status:boolean) {
+			//console.log("==Array==>"+this.userIds);
+			if(this.userIds.indexOf(id) === -1 && status)
+			{
+				this.userIds.push(id);
+			}
+			else if(!status)
+			{
+				let index = this.userIds.indexOf(id);
+				this.userIds.splice(index, 1);
+			}
+			//console.log("==Array==>"+this.userIds);
+		 }
+		 
+	   
 		
 		ngOnInit() {
-		  //this.checklogin = this._authService.getLoginUserInfo();
 		  this.getCurrentUser = this._dataService.getAllUserData();
-		  console.log('get user all data in user component');
-		  /*this._dataService.get_users().subscribe(userdata => {
-				//console.log(userdata);
-				this.getUserList = userdata;
-			});*/
-			this.fetchEmployeeData();
-			
+		  this.fetchEmployeeData();
 		}
+
 		fetchEmployeeData()
 		{
 			console.log('Fetchdata');
@@ -69,49 +90,118 @@ export class UserComponent {
 				console.log(this.userArray['data'].length);
 			});
 		}
+
+		checkUncheckAll(event:any) {
+			//console.log(event.target.checked);
+			this.userArray['data'].forEach(x => x.state = event.target.checked);
+		}
+
+		deleteAll(value:any)
+		{
+			this.userIds = []; //make blank for rearrange id
+			this.userArray['data'].forEach(value => {				
+				if(value.state == true){
+					this.userIds.push(value.id);
+				}				
+			});
+			if(this.userIds.length > 0)
+			{
+				this.headText = 'Delete Selected Data';
+				this.titleText = 'Are you sure you want to delete selected employee data?';
+				this.descText = 'if ignore then click close';
+				this.dialogType = 'delete';
+				//console.log('in opendialog===>'+id);
+				this.empid = this.userIds;
+				const dialogRef = this.dialog.open(DialogBodyComponent, {
+					width: '100%',
+					maxWidth:'100%',
+					data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,type:this.dialogType}
+				}).afterClosed().subscribe(result => {
+					console.log('==Result==>'+result);
+					if(result == 'close')
+					{
+						//do close
+					} else {
+						//delete the data
+						console.log("delete all===>"+this.userIds);
+						this.deleteSelectedEmployee(result);
+						
+					}
+				});
+			} else {
+				this.headText = 'Warning!';
+				this.titleText = 'Please select atleast one checkbox for this action!';
+				this.descText = 'if ignore then click close';
+				this.dialogType = 'warning';
+				//console.log('in opendialog===>'+id);
+				this.empid = this.userIds;
+				const dialogRef = this.dialog.open(DialogBodyComponent, {
+					width: '100%',
+					maxWidth:'100%',
+					data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,type:this.dialogType}
+				}).afterClosed().subscribe(result => {
+					console.log('==Result==>'+result);
+					if(result == 'close')
+					{
+						//do close
+					} else {
+						//delete the data
+						console.log("delete all===>"+this.userIds);
+						this.deleteSelectedEmployee(result);
+						
+					}
+				});
+			}
+		}
+
+		deleteSelectedEmployee(userId:any)
+		{
+			this._dataService.deleteSelectedEmployee(userId).subscribe((Response)=>{
+				//console.log(Response['success']);
+				if(Response['success'] == true)
+				{
+					this.fetchEmployeeData();
+				}
+			});
+		}
+
+
 		addNew(){
 			this.router.navigate(['/admin/user/add']);
 		}
 
-		/*selectAll() {
-			for (var i = 0; i < this.userArray['data'].length; i++) {
-				this.userArray['data'][i].selected = this.selectedAll;
-			}
-		  }
-		  checkIfAllSelected() {
-			this.selectedAll = this.userArray['data'].every(function(item:any) {
-				return item.selected == true;
-			  })
-		  }*/
 
 		deleteEmployee(id:any) {
-			console.log('Employee id deom user component ==>'+id);
-			if (window.confirm("Please confirm?")) {	
-				this._dataService.deleteEmployee(id).subscribe((Response)=>{
-					//console.log(Response['success']);
-					if(Response['success'] == true)
-					{
-						this.fetchEmployeeData();
-					}
-				});
-			} else {
-
-			}
+			console.log('Employee id from user component ==>'+id);
+			this._dataService.deleteEmployee(id).subscribe((Response)=>{
+				//console.log(Response['success']);
+				if(Response['success'] == true)
+				{
+					this.fetchEmployeeData();
+				}
+			});
 		};
 
 		openDialog(id:any): void {
 			this.headText = 'Delete Confirmation';
 			this.titleText = 'Are you sure you want to delete this data?';
 			this.descText = 'if ignore then click close';
+			this.dialogType = 'delete';
 			//console.log('in opendialog===>'+id);
 			this.empid = id;
 			const dialogRef = this.dialog.open(DialogBodyComponent, {
 				width: '100%',
 				maxWidth:'100%',
-				data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText}
-			});
-			dialogRef.afterClosed().subscribe(result => {
-				//this.fetchEmployeeData();	
+				data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,type:this.dialogType}
+			}).afterClosed().subscribe(result => {
+				console.log('==Result==>'+result);
+				if(result == 'close')
+				{
+					//do close
+				} else {
+					//delete the data
+					this.deleteEmployee(result);
+				}
 			});
 		}
 		

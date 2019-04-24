@@ -2,12 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 
-//import {UserComponent} from '../user.component';
 
 export interface DialogData {
 	head: string;
 	title: string;
   desc:string;
+  Type:string;
   eid:number;
 }
 
@@ -24,7 +24,6 @@ export interface DialogData {
 export class DialogBodyComponent implements OnInit {
   id:any;
   constructor(
-    //userComponent: UserComponent,
     public dialogRef: MatDialogRef<DialogBodyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) 
     { 
@@ -35,13 +34,12 @@ export class DialogBodyComponent implements OnInit {
     
   }
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close('close');
   }
   doDelete(id:any)
   {
-    console.log('======>'+id);
-    //this.userComponent.deleteEmployee(id);
-    //this.userComponent.fetchEmployeeData();
+    //console.log('======>'+id);
+    this.dialogRef.close(id);
 
   }
   

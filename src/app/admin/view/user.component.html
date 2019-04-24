@@ -2,10 +2,13 @@
         <div class="container">
             <div class="col-md-12 about-left wow fadeInRight animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
                 <h3>Employee List</h3>
-                <input type="button" value="ADD NEW" (click)="addNew()">
+                <div class="button-group">
+                    <input type="button" class="btn btn-primary" value="ADD NEW" (click)="addNew()">
+                    <input type="button" class="btn btn-primary" value="DELETE" (click)="deleteAll()">
+                </div>
                 <table class="main-table">                    
                     <tr>
-                        <th><input type="checkbox"></th>
+                        <th><input type="checkbox"  name="list_name"  value="m1" (change)="checkUncheckAll($event)"/> </th>
                         <th>Id</th>
                         <th>Name</th>
                         <th>City</th>
@@ -13,12 +16,12 @@
                         <th>Action</th>   
                     </tr>
                     <tr *ngFor="let emp of user.data">
-                        <td><input type="checkbox" value="{{emp.id}}"></td>
+                        <td><input type="checkbox" [(ngModel)]="emp.state" ng-checked="true" name="employeeId[]" id="{{emp.id}}" value="{{emp.id}}" (change)="onCheckboxChange(emp.id, $event.target.checked)"></td>
                         <td align="center">{{emp.id}}</td>
                         <td>{{emp.employeeName}}</td>
                         <td>{{emp.city}}</td>
                         <td>{{emp.phone}}</td>
-                        <td><a routerLink="/admin/edit/{{emp.id}}" >EDIT</a> | <a (click)="openDialog(emp.id)" >DELETE</a></td>
+                        <td align="center"><a class="btn btn-primary" routerLink="/admin/edit/{{emp.id}}" >EDIT</a> <a class="btn btn-primary" style="cursor: pointer;" (click)="openDialog(emp.id)" >DELETE</a></td>
                     </tr>
                 </table>                
             </div>

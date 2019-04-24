@@ -26,13 +26,17 @@ import { EventEmitterService } from './event-emitter.service';
 
 import { AdminRoute } from './admin.route';
 import { DialogBodyComponent } from './component/dialog-body/dialog-body.component';
+import { DataTablesModule } from 'angular-datatables';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoute,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    DataTablesModule,
+    AngularFontAwesomeModule
     
   ],
   declarations: [

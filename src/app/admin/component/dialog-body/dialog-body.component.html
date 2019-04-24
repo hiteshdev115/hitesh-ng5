@@ -1,13 +1,13 @@
-<div class="dialog-body-hp" style="background-color:darkgrey;">
+<div class="dialog-body-hp" >
 <h2 mat-dialog-title>{{data.head}}</h2>
 
 <mat-dialog-content>
 
-<p> {{data.desc}} </p>
 <p>{{data.title}}</p>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="doDelete(data.eid)">OK</button>
-    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button *ngIf="data.type=='delete'" class="btn btn-success" (click)="doDelete(data.eid)">Delete</button>
+    <button class="btn btn-primary" (click)="close()">Close</button>
 </mat-dialog-actions>
 </div>
