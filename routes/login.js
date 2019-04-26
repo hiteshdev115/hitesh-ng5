@@ -54,7 +54,7 @@ exports.saveUser = function(req, res)
     }
     
     //console.log('==='+id);
-    //console.log(req);
+    console.log(req);
     var data = {                
                 name     : input.name,
                 email     : input.email,

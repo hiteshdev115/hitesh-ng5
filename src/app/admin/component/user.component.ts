@@ -7,7 +7,7 @@ import { DataService } from '../auth/data.service';
 import { User } from '../component/user'; //interface
 import { ResourceLoader } from '@angular/compiler';
 import { Location } from '@angular/common';
-import { DialogBodyComponent } from '../component/dialog-body/dialog-body.component';
+import { DialogBodyComponent } from '../component/dialog-body/dialog-body.component'; //For custom dialog
 
 import {
 	MatDialog,
@@ -59,7 +59,8 @@ export class UserComponent {
 
 		
 		
-		onCheckboxChange(id:any, status:boolean) {
+		onCheckboxChange(id:any, status:boolean) 
+		{
 			//console.log("==Array==>"+this.userIds);
 			if(this.userIds.indexOf(id) === -1 && status)
 			{
@@ -76,7 +77,7 @@ export class UserComponent {
 	   
 		
 		ngOnInit() {
-		  this.getCurrentUser = this._dataService.getAllUserData();
+		  //this.getCurrentUser = this._dataService.getAllUserData();
 		  this.fetchEmployeeData();
 		}
 
@@ -141,15 +142,6 @@ export class UserComponent {
 					data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,type:this.dialogType}
 				}).afterClosed().subscribe(result => {
 					console.log('==Result==>'+result);
-					if(result == 'close')
-					{
-						//do close
-					} else {
-						//delete the data
-						console.log("delete all===>"+this.userIds);
-						this.deleteSelectedEmployee(result);
-						
-					}
 				});
 			}
 		}
@@ -203,11 +195,5 @@ export class UserComponent {
 					this.deleteEmployee(result);
 				}
 			});
-		}
-		
-		
-		
-
-
-    
+		}    
 }

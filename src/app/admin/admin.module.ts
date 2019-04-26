@@ -12,10 +12,14 @@ import { HeaderComponent }     from './component/header.component';
 import { FooterComponent }     from './component/footer.component';
 import { DashboardComponent }     from './component/dashboard.component';
 import { AdminhomeComponent }     from './component/adminhome.component';
+
 import {UserComponent} from './component/user.component';
-import {ProductComponent} from './component/product.component';
-import {EdituserComponent} from './component/edituser.component';
 import {AdduserComponent} from './component/adduser.component';
+import {EdituserComponent} from './component/edituser.component';
+
+import {ProductComponent} from './component/product.component';
+import {AddproductComponent} from './component/addproduct.component';
+import {EditProductComponent} from './component/editproduct.component';
 
 import { AuthService } from './auth/auth.service';
 import { DataService } from './auth/data.service';
@@ -49,7 +53,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ProductComponent,
     EdituserComponent,
     AdduserComponent,
-    DialogBodyComponent
+    DialogBodyComponent,
+    AddproductComponent,
+    EditProductComponent
   ],
   providers: [AuthGuard,AuthService,DataService,HttpService,EventEmitterService],
   exports:[],

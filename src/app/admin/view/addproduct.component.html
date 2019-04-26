@@ -1,0 +1,40 @@
+<style type="text/css">
+    .help-block{
+        color: red;
+    }
+</style>
+<div class="news agile">
+        <div class="container">
+            <div class="news-left news-right">
+                <div class="news-right-info wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <h4>Add New Product</h4>
+                    <form #productForm="ngForm" enctype="multipart/form-data" (ngSubmit)="saveProductData(productForm.value)" novalidate autocomplete="off">
+
+                        <input type="hidden" name="id" [(ngModel)]="model.id" #name="ngModel">
+
+                        <input type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required placeholder="Enter Your product name">
+                        <div *ngIf="productForm.submitted && !productName.valid" class="help-block">product name is required</div>
+                        
+                        <input type="text" placeholder="Enter Your description" name="description" [(ngModel)]="model.description" #description="ngModel" required>
+                        <div *ngIf="productForm.submitted && !description.valid" class="help-block">description is required</div>
+
+                        <input type="text" placeholder="Enter Your Product Price" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+                        <div *ngIf="productForm.submitted && !price.valid" class="help-block">price is required</div>
+
+                        
+                        <input type="file" (change)="productImageUpload($event)" name="productImage" multiple="multiple"/>
+                        <!--<div *ngIf="url" style="width: 100%; padding: 5px; text-align: left;">
+                            <img [src]="url" height="100"><br/>
+                            <a (click)="unlinkProductImage(model.id)" >Remove</a>
+                        </div>-->
+                        <img *ngFor='let link of urls'  [src]="link" height="200"> <br/>
+
+                        <input type="submit" value="Save">
+                                               
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

@@ -1,0 +1,38 @@
+<style type="text/css">
+    .help-block{
+        color: red;
+    }
+</style>
+<div class="news agile">
+        <div class="container">
+            <div class="news-left news-right">
+                <div class="news-right-info wow fadeInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <h4>Update Product Information </h4>
+                    <form #productEditForm="ngForm" enctype="multipart/form-data" (ngSubmit)="saveProduct(productEditForm.value)" novalidate autocomplete="off">
+
+                        <input type="hidden" name="id" [(ngModel)]="model.id" #name="ngModel">
+
+                        <input type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required placeholder="Enter Product Name">
+                        <div *ngIf="productEditForm.submitted && !productName.valid" class="help-block">Product Name is required</div>
+                        
+                        <input type="text" placeholder="Enter description" name="description" [(ngModel)]="model.description" #description="ngModel" required>
+                        <div *ngIf="productEditForm.submitted && !description.valid" class="help-block">Description is required</div>
+
+                        <input type="text" placeholder="Enter Your price" name="price" [(ngModel)]="model.price" #price="ngModel" required>
+                        <div *ngIf="productEditForm.submitted && !price.valid" class="help-block">Price number is required</div>
+
+                        <input type="file" (change)="productImageUpload($event)" name="profile_pic" />
+                        <div *ngIf="url" style="width: 100%; padding: 5px; text-align: left;">
+                            <img [src]="url" height="100"><br/>
+                            <input type="button" (click)="unlinkProductImage(model.id)" value="X">
+                        </div>
+
+                        <input type="submit" value="Save">
+                                               
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

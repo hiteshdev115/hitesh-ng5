@@ -2139,3 +2139,9 @@ input[type="text"] {
 .btn-primary{
     margin: 5px 5px 5px 0;
 }
+.action-group i{
+    display: unset;
+}
+.news-right input{
+    margin: 10px 0 0 0!important;
+}

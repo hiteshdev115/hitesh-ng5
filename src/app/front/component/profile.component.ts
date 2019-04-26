@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
     }
 
     saveprofile(postData) {
-        console.log(postData);
+        //console.log('==PostData==>'+postData);
         this._dataService.saveprofile(postData,this.profile_pic).then((res) => {
                 if (res.success) {
                     this.router.navigate(['/profile']);

@@ -34,10 +34,13 @@ export class DataService {
         if (postData) {
             for (var key in postData) {
                 var value = postData[key];
+                //console.log(key+'====='+ value);
                 formdata.append(key, value);
             }
         }
-        
+        //console.log("======Form Data =====");
+        var aa = formdata.get('profile_pic');
+        //console.log(aa);
         return <any>new Promise((resolve, reject) => {
                 this._http.post(this.baseUrl + "saveUser", formdata, {headers:headerToken}).subscribe(
                 res => {
