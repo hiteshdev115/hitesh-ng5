@@ -50,8 +50,20 @@ var storage = multer.diskStorage({
         callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
+
+var productImageStorage = multer.diskStorage({
+  destination: function (req, file, callback) {
+      callback(null, appRoot.path + "/src/assets/productImages")
+  },
+  filename: function (req, file, callback) {
+      callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
 var upload = multer({
     storage: storage
+});
+var uploadProductImages = multer({
+  storage: productImageStorage
 });
 /*End of file Upload*/
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -73,7 +85,7 @@ app.post('/admin/addEmployee', admin_user.addEmployee);
 app.post('/admin/deleteSelectedEmployee', admin_user.deleteSelectedEmployee);
 
 app.get('/admin/product', admin_product.productList);
-app.post('/admin/addProduct', upload.array('productImage'), admin_product.addProduct);
+app.post('/admin/addProduct', uploadProductImages.array('productImage'), admin_product.addProduct);
 app.get('/admin/getProductDetails/:id', admin_product.getSingleProductDetails);
 app.put('/admin/updateProduct/', upload.single('productImage'), admin_product.updateProduct);
 app.delete('/admin/deleteProduct/:prodid', admin_product.deleteProduct);
