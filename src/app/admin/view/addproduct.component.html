@@ -23,13 +23,18 @@
 
                         
                         <input type="file" (change)="productImageUpload($event)" name="productImage" multiple="multiple"/>
+                        <input type="submit" value="Save">
                         <!--<div *ngIf="url" style="width: 100%; padding: 5px; text-align: left;">
                             <img [src]="url" height="100"><br/>
                             <a (click)="unlinkProductImage(model.id)" >Remove</a>
                         </div>-->
-                        <img *ngFor='let link of urls'  [src]="link" height="200"> <br/>
-
-                        <input type="submit" value="Save">
+                        <div class="img_grp_main">
+                            <div class="imageGroup" *ngFor='let link of urls'>
+                                <img [src]="link" height="200"> 
+                                <input type="button" value="X" (click)="deleteImage(urls)">
+                            </div>
+                        </div>
+                        
                                                
                     </form>
                 </div>
