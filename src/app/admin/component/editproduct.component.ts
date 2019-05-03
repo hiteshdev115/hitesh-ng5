@@ -19,6 +19,7 @@ export class EditProductComponent implements OnInit {
     price:any;
     
     url = '';
+    urls = [];
     productImage:any;
     
     constructor(public router: Router,
@@ -33,28 +34,32 @@ export class EditProductComponent implements OnInit {
               price: '',
               submitted:false
           };
+          this.productImage = '';
     }
     
     ngOnInit() {
       this.id = this.route.snapshot.paramMap.get('id'); //get id from url
       this._dataService.getProductDetails(this.id).then((res) => {
         if (res.success) {
-                    console.log(res.data[0]);
+                    console.log(res);
                     this.model.id = res.data[0].id;
                     this.model.productName = res.data[0].productName;       
                     this.model.description = res.data[0].description;                    
                     this.model.price = res.data[0].price;
-                    if(res.data[0].image != ''){
-                      this.url = '/assets/profile/'+res.data[0].image;
+                    //console.log(res.images);
+                    for(var i=0; i < res.images.length; i++)
+                    {
+                      this.urls.push({'imgId': res.images[i].id,'imgUrl':'/assets/productImages/'+res.images[i].image});
+                      
                     }
-                    console.log(this.url);
+                    //console.log(this.urls);
                 } else {
                     console.log('error in get product data');
                     this.model.id = '';
                     this.model.productName = '';
                     this.model.description = '';
                     this.model.price = '';
-                    this.url = '';
+                    this.urls = [];
                 }
         });
     }
@@ -64,18 +69,23 @@ export class EditProductComponent implements OnInit {
       this.productImage = files;
       //console.log(event.target.files[0]);
       if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-        reader.onload = (event) => { // called once readAsDataURL is completed
-            this.url = '';//event.target.result;
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+          reader.onload = (event:Event & {target: {result:string}}) => {
+            //console.log(event.target.result);
+            this.urls.push({'imgUrl' : event.target.result}); 
+          }
+          reader.readAsDataURL(event.target.files[i]);
         }
       }      
     }
 
     saveProduct(postData) {
-        console.log(postData);
+        console.log(this.productImage);
         //this._dataService.saveprofile(postData,this.profile_pic).then((res) => {
         this._dataService.saveProduct(postData, this.productImage).then((res) => {
+                console.log(res);
                 if (res.success) {
                     this.router.navigate(['/admin/product']);
                 } else {
@@ -86,11 +96,11 @@ export class EditProductComponent implements OnInit {
 
     unlinkProductImage(id){
       console.log(id);
-      this.url = '';
+      //this.url = '';
       this._dataService.unlinkProductImage(id).then((res) => {
             if (res.success) {
-                this.url = '';
-                //this.router.navigate(['/product']);
+                //this.url = '';
+                this.router.navigate(['/product/edit/'+id]);
             } else {
               console.log('error');
             }

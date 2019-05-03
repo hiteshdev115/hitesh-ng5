@@ -39,24 +39,11 @@ export class AddproductComponent implements OnInit {
       
     }
 
-    /*productImageUpload(event) {
-        var files = event.target.files;
-        this.productImage = files;
-        //console.log(event.target.files[0]);
-        if (event.target.files && event.target.files[0]) {
-          var reader = new FileReader();
-          reader.readAsDataURL(event.target.files[0]); // read file as data url
-          reader.onload = (event) => { // called once readAsDataURL is completed
-              this.url = '';//event.target.result;
-          }
-        }
-        
-    }*/
     productImageUpload(event) {
       var files = event.target.files;
       
       this.productImage = files;
-      console.log(this.productImage);
+      
       if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
         for (let i = 0; i < filesAmount; i++) {
@@ -67,13 +54,18 @@ export class AddproductComponent implements OnInit {
           }
           reader.readAsDataURL(event.target.files[i]);
         }
-      }      
+      }
+      console.log(this.productImage);      
     }
+
+    deleteImage(i){ 
+      this.urls.splice(i, 1);   
+     }
 
     saveProductData(postData) {
         this._dataService.saveProductDetails(postData, this.productImage).then((res) => {
                 if (res.success) {
-                    //this.router.navigate(['/admin/product']);
+                    this.router.navigate(['/admin/product']);
                 } else {
                   console.log('error');
                 }

@@ -158,7 +158,7 @@ export class DataService {
         var headerToken = this._httpService.createAuthorizationHeader();
         
         let formdata = new FormData();
-        console.log("File length==="+files.length);
+        //console.log("File length==="+files.length);
         //formdata.append("productImage", files[0]);  
         for(let i =0; i < files.length; i++){
             formdata.append("productImage", files[i], files[i]['name']);
@@ -170,7 +170,6 @@ export class DataService {
                 formdata.append(key, value);
             }
         }
-        
         //console.log(formdata);
         return <any>new Promise((resolve, reject) => {
                 this._http.post(this.baseUrl + "addProduct", formdata, {headers:headerToken}).subscribe(
@@ -185,8 +184,7 @@ export class DataService {
         })    
     }
     getProductDetails(id:any) {
-        console.log("product is:===>"+id);
-       
+        //console.log("product is:===>"+id);
         var headerToken = this._httpService.createAuthorizationHeader();
         
         return <any>new Promise((resolve, reject) => {
@@ -206,8 +204,12 @@ export class DataService {
         var headerToken = this._httpService.createAuthorizationHeader();
         
         let formdata = new FormData();
-        formdata.append("productImage", files[0]);
-        
+        //formdata.append("productImage", files[0]);
+        for(let i =0; i < files.length; i++){
+            formdata.append("productImage", files[i], files[i]['name']);
+        }
+
+
         if (postData) {
             for (var key in postData) {
                 var value = postData[key];
@@ -219,6 +221,7 @@ export class DataService {
         return <any>new Promise((resolve, reject) => {
                 this._http.put(this.baseUrl + "updateProduct", formdata, {headers:headerToken}).subscribe(
                 res => {
+                    console.log(res);
                     var resData = res;
                     resolve(resData);
                 },
@@ -234,7 +237,6 @@ export class DataService {
 
     deleteSelectedProduct(userIds:any){
         var headerToken = this._httpService.createAuthorizationHeader();
-        console.log("UserIds====>"+userIds);
         return this._http.post(this.baseUrl + "deleteSelectedProduct",{id:userIds,headers:headerToken});  
     }
 

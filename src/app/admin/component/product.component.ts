@@ -50,22 +50,21 @@ export class ProductComponent implements OnInit {
 		private http: HttpClient, private _dataService: DataService,
 		private dialog: MatDialog) { 
 				console.log('Product component');
-				this.dtOptions = {
-					pagingType: 'full_numbers',
-					pageLength: 5,
-					processing: false,
-					lengthMenu:[5,10,20,40,60,80,100,500], //If you are not provide than its displying [10, 25, 50],
-					ordering: true,
-					searching: true,
-					columnDefs: [{
-							"targets": [1],
-							"orderable": false,
-					}]
-				};
-        	
 		}   
 			
-		ngOnInit() {			
+		ngOnInit() {
+			this.dtOptions = {
+				pagingType: 'full_numbers',
+				pageLength: 5,
+				processing: false,
+				lengthMenu:[5,10,20,40,60,80,100,500], //If you are not provide than its displying [10, 25, 50],
+				ordering: true,
+				searching: true,
+				columnDefs: [{
+						"targets": [1],
+						"orderable": false,
+				}]
+			};			
 			this.getProducts();
 		}
 		

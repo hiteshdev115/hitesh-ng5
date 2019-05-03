@@ -87,7 +87,7 @@ app.post('/admin/deleteSelectedEmployee', admin_user.deleteSelectedEmployee);
 app.get('/admin/product', admin_product.productList);
 app.post('/admin/addProduct', uploadProductImages.array('productImage'), admin_product.addProduct);
 app.get('/admin/getProductDetails/:id', admin_product.getSingleProductDetails);
-app.put('/admin/updateProduct/', upload.single('productImage'), admin_product.updateProduct);
+app.put('/admin/updateProduct/', uploadProductImages.array('productImage'), admin_product.updateProduct);
 app.delete('/admin/deleteProduct/:prodid', admin_product.deleteProduct);
 app.post('/admin/deleteSelectedProduct', admin_product.deleteSelectedProduct);
 app.post('/admin/product/unlinkimage', admin_product.unlinkImage);
