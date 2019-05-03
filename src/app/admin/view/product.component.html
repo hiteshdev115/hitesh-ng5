@@ -19,7 +19,7 @@
                               </tr>
                         </thead>
                         <tbody>
-                              <tr *ngFor="let prod of product.data">
+                              <tr *ngFor="let prod of productData['data']">
                                     <td><input type="checkbox" [(ngModel)]="prod.state" ng-checked="true" name="prodId[]" id="{{prod.id}}" value="{{prod.id}}" (change)="onCheckboxChange(prod.id, $event.target.checked)"></td>
                                     <td>{{prod.productName}}</td>
                                     <td>{{prod.description}}</td>

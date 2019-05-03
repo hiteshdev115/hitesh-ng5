@@ -96,9 +96,9 @@ app.use(function (err, req, res, next) {
   console.log('This is the invalid field ->', err.field);
   next(err);
 })
-/*app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/index.html'));
-});*/
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/hitesh-ng5/index.html'));
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

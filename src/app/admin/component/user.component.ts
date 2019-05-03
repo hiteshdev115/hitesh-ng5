@@ -97,7 +97,7 @@ export class UserComponent {
 			this.userArray['data'].forEach(x => x.state = event.target.checked);
 		}
 
-		deleteAll(value:any)
+		deleteAll()
 		{
 			this.userIds = []; //make blank for rearrange id
 			this.userArray['data'].forEach(value => {				
@@ -116,7 +116,7 @@ export class UserComponent {
 				const dialogRef = this.dialog.open(DialogBodyComponent, {
 					width: '100%',
 					maxWidth:'100%',
-					data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,type:this.dialogType}
+					data: {eid:this.empid, head: this.headText, title: this.titleText, desc:this.descText,Type:this.dialogType}
 				}).afterClosed().subscribe(result => {
 					console.log('==Result==>'+result);
 					if(result == 'close')

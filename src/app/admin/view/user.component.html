@@ -15,7 +15,7 @@
                         <th>Contact No</th>
                         <th>Action</th>   
                     </tr>
-                    <tr *ngFor="let emp of user.data">
+                    <tr *ngFor="let emp of user['data']">
                         <td><input type="checkbox" [(ngModel)]="emp.state" ng-checked="true" name="employeeId[]" id="{{emp.id}}" value="{{emp.id}}" (change)="onCheckboxChange(emp.id, $event.target.checked)"></td>
                         <td align="center">{{emp.id}}</td>
                         <td>{{emp.employeeName}}</td>

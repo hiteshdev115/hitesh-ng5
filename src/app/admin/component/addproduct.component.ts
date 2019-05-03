@@ -19,7 +19,7 @@ export class AddproductComponent implements OnInit {
     price:'';
     url = '';
     urls = [];
-    productImage:any;
+    productImage = [];
     
     constructor(public router: Router,
         private route: ActivatedRoute,
@@ -59,7 +59,8 @@ export class AddproductComponent implements OnInit {
     }
 
     deleteImage(i){ 
-      this.urls.splice(i, 1);   
+      console.log('Index===>'+i);
+      this.urls.splice(i, 1);              
      }
 
     saveProductData(postData) {

@@ -31,9 +31,10 @@ export class ProductComponent implements OnInit {
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<any> = new Subject();
 	  
-	public product : Product[] = []; 
 	public productObservable : Observable<Product[]> ;
+	productData : Product[] = []; 
 	productArray:any;
+	dummy:any;
 
 	headText: string;
 	titleText: string;
@@ -80,7 +81,7 @@ export class ProductComponent implements OnInit {
 		{
 			this._dataService.get_products().subscribe((res : Product[])=>{
 				console.log(res);
-				this.product = res;
+				this.productData = res;
 				this.productArray = res;	
 			});
 		}
@@ -89,8 +90,10 @@ export class ProductComponent implements OnInit {
 		getProducts()
 		{	
 			this._dataService.get_products().subscribe((res : Product[])=>{
-				//console.log(res);
-				this.product = res;
+				console.log(res);
+				this.productData = res;
+				//this.dummy = res;
+				console.log(this.productData['data'].length);
 				this.productArray = res;
 				this.dtTrigger.next();				
 			});
@@ -156,7 +159,7 @@ export class ProductComponent implements OnInit {
 			console.log("==Array==>"+this.productIds);
 		}
 
-		deleteAll(value:any)
+		deleteAll()
 		{
 			this.productIds = []; //make blank for rearrange id
 			this.productArray['data'].forEach(value => {				
