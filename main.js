@@ -70,27 +70,27 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 
-app.get('/home', log.main);
-app.post('/saveUser', upload.single('profile_pic'), log.saveUser);
-app.post('/login', log.login);
-app.post('/getUserDetails', log.getUserDetails);
-app.post('/unlinkimage', log.unlinkImage);
+app.get('/api/home', log.main);
+app.post('/api//saveUser', upload.single('profile_pic'), log.saveUser);
+app.post('/api/login', log.login);
+app.post('/api/getUserDetails', log.getUserDetails);
+app.post('/api/unlinkimage', log.unlinkImage);
 
-app.post('/admin/adminlogin', admin_login.login);
-app.post('/admin/user', admin_user.userList);
-app.post('/admin/getUserDetails', admin_user.getSingleUserDetails);
-app.post('/admin/updateEmployee', admin_user.updateEmployee);
-app.post('/admin/deleteEmployee', admin_user.deleteEmployee);
-app.post('/admin/addEmployee', admin_user.addEmployee);
-app.post('/admin/deleteSelectedEmployee', admin_user.deleteSelectedEmployee);
+app.post('/api/admin/adminlogin', admin_login.login);
+app.post('/api/admin/user', admin_user.userList);
+app.post('/api/admin/getUserDetails', admin_user.getSingleUserDetails);
+app.post('/api/admin/updateEmployee', admin_user.updateEmployee);
+app.post('/api/admin/deleteEmployee', admin_user.deleteEmployee);
+app.post('/api/admin/addEmployee', admin_user.addEmployee);
+app.post('/api/admin/deleteSelectedEmployee', admin_user.deleteSelectedEmployee);
 
-app.get('/admin/product', admin_product.productList);
-app.post('/admin/addProduct', uploadProductImages.array('productImage'), admin_product.addProduct);
-app.get('/admin/getProductDetails/:id', admin_product.getSingleProductDetails);
-app.put('/admin/updateProduct/', uploadProductImages.array('productImage'), admin_product.updateProduct);
-app.delete('/admin/deleteProduct/:prodid', admin_product.deleteProduct);
-app.post('/admin/deleteSelectedProduct', admin_product.deleteSelectedProduct);
-app.post('/admin/product/unlinkimage', admin_product.unlinkImage);
+app.get('/api/admin/product', admin_product.productList);
+app.post('/api/admin/addProduct', uploadProductImages.array('productImage'), admin_product.addProduct);
+app.get('/api/admin/getProductDetails/:id', admin_product.getSingleProductDetails);
+app.put('/api/admin/updateProduct/', uploadProductImages.array('productImage'), admin_product.updateProduct);
+app.delete('/api/admin/deleteProduct/:prodid', admin_product.deleteProduct);
+app.post('/api/admin/deleteSelectedProduct', admin_product.deleteSelectedProduct);
+app.post('/api/admin/product/unlinkimage', admin_product.unlinkImage);
 
 app.use(function (err, req, res, next) {
   console.log('This is the invalid field ->', err.field);

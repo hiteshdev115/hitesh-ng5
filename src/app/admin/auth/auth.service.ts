@@ -18,7 +18,7 @@ export class AuthService {
     @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
     constructor(private _http: HttpClient) {
-        this.baseUrl  = 'http://localhost:3000/';
+        this.baseUrl  = 'http://localhost:3000/api/';
     }
 
     /*checkExistsUser() {

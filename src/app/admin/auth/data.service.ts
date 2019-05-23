@@ -21,7 +21,7 @@ export class DataService {
     userdata:any;
   
     constructor(private _http: HttpClient, private _httpService:HttpService) {
-        this.baseUrl  = 'http://localhost:3000/admin/';
+        this.baseUrl  = 'http://localhost:3000/api/admin/';
         this.loginuserData = JSON.parse(localStorage.getItem("loginUser")); 
         /*this.loginEmail = {
                 email: this.loginuserData['data']['email']

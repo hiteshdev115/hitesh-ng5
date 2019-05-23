@@ -57,7 +57,7 @@ export class AddproductComponent implements OnInit {
       }
       console.log(this.productImage);      
     }
-
+ 
     deleteImage(i){ 
       console.log('Index===>'+i);
       this.urls.splice(i, 1);              

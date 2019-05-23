@@ -18,7 +18,7 @@ export class DataService {
     isLoggedIn: boolean = false;
     baseUrl:string;
     constructor(private _http: HttpClient, private _httpService:HttpService) {
-        this.baseUrl  = 'http://localhost:3000/';
+        this.baseUrl  = 'http://localhost:3000/api/';
         this.loginuserData = JSON.parse(localStorage.getItem("loginUser")); 
         this.loginEmail = {
                 email: this.loginuserData['data']['email']

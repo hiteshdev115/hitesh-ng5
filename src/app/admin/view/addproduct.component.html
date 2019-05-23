@@ -12,7 +12,7 @@
 
                         <input type="hidden" name="id" [(ngModel)]="model.id" #name="ngModel">
 
-                        <input type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required placeholder="Enter Your product name">
+                        <input type="text" name="productName" [(ngModel)]="model.productName" #productName="ngModel" required placeholder="Enter Your product name" >
                         <div *ngIf="productForm.submitted && !productName.valid" class="help-block">product name is required</div>
                         
                         <input type="text" placeholder="Enter Your description" name="description" [(ngModel)]="model.description" #description="ngModel" required>

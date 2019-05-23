@@ -165,13 +165,15 @@ exports.updateProduct = function(req, res)
       } else {
         /* For insert multiple product image */
         var imageDataArray = [];
-        for(var i = 0; i < req.files.length; i++)
-        {
-            var imageData = [                
-                id,
-                req.files[i].filename   
-            ]
-            imageDataArray.push(imageData);
+        if(req.files){
+            for(var i = 0; i < req.files.length; i++)
+            {
+                var imageData = [                
+                    id,
+                    req.files[i].filename   
+                ]
+                imageDataArray.push(imageData);
+            } 
         }
         //console.log(imageDataArray);
         if(imageDataArray.length > 0)
