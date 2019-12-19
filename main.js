@@ -71,7 +71,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 app.get('/api/home', log.main);
-app.post('/api//saveUser', upload.single('profile_pic'), log.saveUser);
+app.post('/api/saveUser', upload.single('profile_pic'), log.saveUser);
 app.post('/api/login', log.login);
 app.post('/api/getUserDetails', log.getUserDetails);
 app.post('/api/unlinkimage', log.unlinkImage);
